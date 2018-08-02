@@ -1,0 +1,246 @@
+@import url("..//css/reset.css");
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+@font-face {
+    font-family: BebasNeue-Bold;
+    src: url("../fonts/bebas_neue/BebasNeue Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: BebasNeue-Book;
+    src: url("../fonts/bebas_neue/BebasNeue Book.otf") format("opentype");
+}
+
+@font-face {
+    font-family: BebasNeue-Light;
+    src: url("../fonts/bebas_neue/BebasNeue Light.otf") format("opentype");
+}
+
+@font-face {
+    font-family: BebasNeue-Regular;
+    src: url("../fonts/bebas_neue/BebasNeue Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: BebasNeue-Thin;
+    src: url("../fonts/bebas_neue/BebasNeue Thin.otf") format("opentype");
+}
+
+// BEGIN variables
+@black: #181818;
+@blue: #6fcffb;
+@red: #fd8d7b;
+@card-flex-basis: 325px;
+// END variables
+
+// BEGIN mixins
+.column-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.centred-flex {
+    align-items: center;
+    justify-content: center;
+}
+
+.top-left(@top, @left) {
+    top: @top;
+    left: @left;
+}
+
+.width-height(@width, @height) {
+    width: @width;
+    height: @height;
+}
+// END mixins
+
+
+.ba-page {
+    justify-content: center;
+    background: #9789f9;
+    .column-flex;
+}
+
+.ba-container {
+
+    height: 100%;
+    display: flex;
+    .centred-flex;
+
+    .ba-pricing {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .width-height(70%, 620px);
+
+        .ba-pricing__col {
+            background: #f5f4f9;
+            flex-basis: 295px;
+            align-items: center;
+            height: 88%;
+            box-shadow: 2px 4px 59px 0px #7a6be7;
+            .column-flex;
+
+            .ba-price {
+                justify-content: space-between;
+                .width-height(100%, 100%);
+                .column-flex;
+
+                .ba-price__title {
+                    height: 25.5%;
+                    position: relative;
+                    .column-flex;
+                    .centred-flex;
+
+                    /* Символ "Р" и надпись "popular".
+                     Свойство "display: inline-block"
+                    нужно для того, чтобы ограничить ширину блока
+                    по его контенту. Благодаря этому,
+                    надпись "popular" появляеться
+                    именно при наведении на символ "Р".*/
+
+                    .ba-price__popular {
+                        visibility: hidden;
+                        position: absolute;
+                        top: 8px;
+                        right: 8px;
+                        display: inline-block;
+
+                        .label-img {
+                            display: none;
+                            vertical-align: super;
+                        }
+
+                        &:hover {
+                            right: -97px;
+
+                            .label-img {
+                                display: initial;
+                            }
+                        }
+                    }
+
+                    .ba-price__popular--active {
+                        visibility: visible;
+                    }
+
+                    .ba-price__rate {
+                        text-align: center;
+                        font: 100 55px/56px BebasNeue-Thin;
+
+                        &::before {
+                            content: "$";
+                            font-size: 0.4em;
+                            vertical-align: super;
+                        }
+
+                        &::after {
+                            content: "/hr";
+                            font: 300 0.3em BebasNeue-Light;
+                            vertical-align: baseline;
+                        }
+                    }
+
+                    .ba-price__position {
+                        text-align: center;
+                        font: 400 24px/36px BebasNeue-Regular;
+                    }
+                }
+
+                .ba-price__body {
+                    justify-content: space-between;
+                    color: @black;
+                    font: 300 16px/48px Roboto;
+                    background: url("..//img/card-white.jpg") 50% 0% no-repeat;
+                    height: 64.6%;
+                    .column-flex;
+                    .centred-flex;
+
+                    .ba-price__content {
+                        align-items: center;
+                        justify-content: space-between;
+                        height: 83%;
+                        .column-flex;
+
+                        .ba-price__icon {
+                            .width-height(36px, 36px);
+                        }
+
+                        .ba-price__icon--ux-ui {
+                            background: url("..//img/sprite.png") -2px 0;
+                        }
+
+                        .ba-price__icon--web-design {
+                            background: url(..//img/sprite.png) -43px 0px;
+                        }
+
+                        .ba-price__icon--web-development {
+                            background: url("..//img/sprite.png") 31px 0px;
+                        }
+                    }
+                }
+
+                .ba-price__bottom {
+                    height: 9.8%;
+                    align-self: center;
+                    position: relative;
+
+                    .ba-button {
+                        background: @blue;
+                        box-shadow: 2px 4px 18px 0px rgba(133, 192, 247, 0.31);
+                        border-radius: 30px;
+                        border: none;
+                        outline: none;
+                        color: #ffffff;
+                        letter-spacing: 1px;
+                        font: 400 18px/53px BebasNeue-Regular;
+                        position: absolute;
+                        .top-left(26px, -100px);
+                        .width-height(203px, 54px);
+
+                        &:active {
+                            background: darken(@blue, 12%);
+                        }
+                    }
+
+                    .ba-price__discount {
+                        color: #a9a9a9;
+                        font: 300 11px/57px Roboto;
+                    }
+                }
+            }
+        }
+
+        .ba-pricing__col--center {
+            flex-basis: 310px;
+            height: 100%;
+
+            .ba-price {
+
+                .ba-price__body {
+                    height: 61.4%;
+
+                    .ba-price__content {
+                        justify-content: space-around;
+                    }
+                }
+
+                .ba-price__bottom {
+                    height: 13.2%;
+                    justify-content: flex-end;
+                    .column-flex;
+
+                    .ba-button {
+                        background: @red;
+                        box-shadow: 2px 4px 18px 0px rgba(253, 141, 123, 0.31);
+                        .top-left(-26px, -30px);
+
+                        &:active {
+                            background: darken(@red, 5%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
